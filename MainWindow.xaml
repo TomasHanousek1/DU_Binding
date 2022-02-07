@@ -8,7 +8,7 @@
         Title="Osoba" Height="450" Width="800">
     <!--
     <Window.DataContext>
-        <local:Osoba/>
+        <local:Zamestanec/>
     </Window.DataContext>
     -->
     <Grid Margin="20">
@@ -21,25 +21,47 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="8*"/>
         </Grid.RowDefinitions>
         <TextBlock Text="Jméno" Grid.Column="0" Grid.Row="0"/>
         <TextBox x:Name="tbJmeno" Grid.Column="1" Grid.Row="0" 
-                 Text="{Binding Jmeno, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 Text="{Binding Jmeno, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                  ToolTip="Aktualizuje se okamžitě"/>
         <TextBlock Text="Příjmení" Grid.Column="0" Grid.Row="1"/>
         <TextBox x:Name="tbPrijmeni" Grid.Column="1" Grid.Row="1" 
                  Text="{Binding Prijmeni, Mode=TwoWay,UpdateSourceTrigger=LostFocus}"
                  ToolTip="Aktualizuje se po opuštění"/>
-        <TextBlock Text="Datum narození" Grid.Column="0" Grid.Row="2"/>
-        <DatePicker x:Name="datNar" Grid.Column="1" Grid.Row="2" 
+        <TextBlock Text="Nejvyšší dostažené vzdělání" Grid.Column="0" Grid.Row="2"/>
+
+        <ComboBox x:Name="ComboNejvyssiVzdelani" Grid.Column="1" Grid.Row="2"
+            ToolTip="Aktualizuje se po opuštění">
+            <ComboBoxItem>ZS</ComboBoxItem>
+            <ComboBoxItem>SS</ComboBoxItem>
+            <ComboBoxItem>VS</ComboBoxItem>
+        </ComboBox>
+
+        <TextBlock Text="Pracovní Pozice" Grid.Column="0" Grid.Row="3"/>
+        <TextBox x:Name="tbPracovniPozice" Grid.Column="1" Grid.Row="3" 
+                 Text="{Binding PracovniPozice, Mode=TwoWay,UpdateSourceTrigger=LostFocus}"
+                 ToolTip="Aktualizuje se po opuštění"/>
+        <TextBlock Text="Plat" Grid.Column="0" Grid.Row="4"/>
+        <TextBox x:Name="tbPlat" Grid.Column="1" Grid.Row="4" 
+                 Text="{Binding Plat, Mode=TwoWay,UpdateSourceTrigger=LostFocus}"
+                 ToolTip="Aktualizuje se po opuštění"/>
+
+        <TextBlock Text="Datum narození" Grid.Column="0" Grid.Row="5"/>
+        <DatePicker x:Name="datNar" Grid.Column="1" Grid.Row="5" 
                     Text="{Binding Narozeni, Mode=TwoWay}"
                     ToolTip="Aktualizuje se okamžitě"/>
-        <Button x:Name="btShow" Content="Ukaž" Grid.Column="0" Grid.Row="3" Click="BtShow_Click"
-                ToolTip="Ukáže v MessageBoxu stav informací na pozadí."/>
-        <Button x:Name="btClear" Content="Čisti" Grid.Column="1" Grid.Row="3" Click="BtClear_Click"
+        
+        <Button x:Name="btSave" Content="Uložit data" Grid.Column="0" Grid.Row="6" Click="btSave_Click"
+                ToolTip="Uloží data."/>
+        <Button x:Name="btClear" Content="Čisti" Grid.Column="1" Grid.Row="6" Click="BtClear_Click"
                 ToolTip="Vymaže data a WPF se postará o zbytek"/>
-        <TextBlock VerticalAlignment="Bottom" x:Name="stavPerson" Grid.Row="4" Grid.ColumnSpan="2" 
+        <TextBlock VerticalAlignment="Bottom" x:Name="stavPerson" Grid.Row="7" Grid.ColumnSpan="2" 
                    Text="{Binding Status}"/>
 
     </Grid>
